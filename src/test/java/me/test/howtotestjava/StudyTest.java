@@ -1,22 +1,29 @@
 package me.test.howtotestjava;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class StudyTest {
 
     @Test
     //@DisplayName("make study \uD83D\uDE31")
+    @EnabledOnOs({OS.WINDOWS, OS.LINUX})
+    //@EnabledOnOs(OS.WINDOWS)
+    @DisabledOnOs(OS.MAC)
+    //@EnabledOnJre(JRE.JAVA_11)
+    @EnabledOnJre({JRE.JAVA_8, JRE.JAVA_9, JRE.JAVA_10})
     void create_new_study(){
         Study study = new Study(-10);
-        assertNotNull(study);
-        assertEquals(StudyStatus.LIMIT, study.getStatus(), "When create study status muse be DRAFT");
-        assertTrue(1 < 2);
-        assertTrue(study.getLimit() > 0, "Limit must more than 0");
+//        assertNotNull(study);
+//        assertEquals(StudyStatus.LIMIT, study.getStatus(), "When create study status muse be DRAFT");
+//        assertTrue(1 < 2);
+//        assertTrue(study.getLimit() > 0, "Limit must more than 0");
         assertAll(
                 () -> assertNotNull(study),
                 () -> assertEquals(StudyStatus.LIMIT, study.getStatus(), "When create study status muse be DRAFT"),
@@ -34,8 +41,18 @@ public class StudyTest {
     }
 
     @Test
-    //@DisplayName("make study again \uD83D\uDE31")
+    @DisplayName("Make study1")
+    //@Tag("fast")
+    @FastTest
     void create_new_study_again(){
+        System.out.println("create1");
+    }
+
+    @Test
+    @DisplayName("Make study2")
+    //@Tag("slow")
+    @SlowTest
+    void create_new_study_again2(){
         System.out.println("create1");
     }
 
