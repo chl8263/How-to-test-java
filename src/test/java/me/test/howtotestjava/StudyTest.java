@@ -2,6 +2,10 @@ package me.test.howtotestjava;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ArgumentConversionException;
+import org.junit.jupiter.params.converter.SimpleArgumentConverter;
+import org.junit.jupiter.params.provider.*;
 
 import java.time.Duration;
 
@@ -54,6 +58,42 @@ public class StudyTest {
     @SlowTest
     void create_new_study_again2(){
         System.out.println("create1");
+    }
+
+    @DisplayName("Make repeat study")
+    @RepeatedTest(value=10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
+    void create_study(RepetitionInfo repetitionInfo){
+        System.out.println("test" + repetitionInfo.getCurrentRepetition()+ "/" + repetitionInfo.getTotalRepetitions());
+    }
+
+    @DisplayName("Make parameterizedTest")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
+    @ValueSource(strings ={"hi", "my", "name", "Ewan"})
+    @EmptySource
+    @NullSource
+    @NullAndEmptySource
+    void parameterizedTest(String msg){
+        System.out.println(msg);
+    }
+
+    @DisplayName("Make Study")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
+    @ValueSource(ints = {10, 20, 40})
+    void parameterizedTest(Study study){
+        System.out.println(study.getLimit());
+    }
+
+    @DisplayName("Repeat Test")
+    @RepeatedTest(value = 5, name="{displayName}, {currentRepetition}/{totalRepetitions}")
+    void repeatTest(){
+        System.out.println("Repeat Test");
+    }
+
+    @ParameterizedTest(name = "Parameterized Test {0}")
+    @ValueSource(strings = {"Ewan", "Ewan2", "Ewan3"})
+    @NullSource
+    void parameterTest(String name){
+        System.out.println(name);
     }
 
     @BeforeAll
