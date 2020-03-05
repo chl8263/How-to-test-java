@@ -9,11 +9,33 @@ import org.junit.jupiter.params.provider.*;
 
 import java.time.Duration;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudyTest {
+
+    int value = 1;
+
+    @Order(1)
+    @Test
+    void instanceTest(){
+        System.out.println(this);
+        System.out.println(value++);
+        assertThat(value).isGreaterThan(1);
+    }
+
+    @Order(2)
+    @Test
+    void instanceTest2(){
+        System.out.println(this);
+        //System.out.println(value++);
+        assertThat(value).isGreaterThan(1);
+    }
+
 
     @Test
     //@DisplayName("make study \uD83D\uDE31")
