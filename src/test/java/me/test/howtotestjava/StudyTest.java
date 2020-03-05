@@ -2,6 +2,8 @@ package me.test.howtotestjava;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ArgumentConversionException;
 import org.junit.jupiter.params.converter.SimpleArgumentConverter;
@@ -16,11 +18,23 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@ExtendWith(FindSlowTestExtension.class)
 public class StudyTest {
 
     int value = 1;
 
+    @RegisterExtension
+    static FindSlowTestExtension findSlowTestExtension = new FindSlowTestExtension(1000L);
+
+    @Test
     @Order(1)
+    void extensionTest() throws InterruptedException{
+
+        Thread.sleep(1000);
+        System.out.println("create extension test");
+    }
+
+    @Order(2)
     @Test
     void instanceTest(){
         System.out.println(this);
@@ -28,7 +42,7 @@ public class StudyTest {
         assertThat(value).isGreaterThan(1);
     }
 
-    @Order(2)
+    @Order(3)
     @Test
     void instanceTest2(){
         System.out.println(this);
