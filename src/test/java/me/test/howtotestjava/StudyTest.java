@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudyTest {
 
@@ -32,7 +32,7 @@ public class StudyTest {
     @Test
     void instanceTest2(){
         System.out.println(this);
-        //System.out.println(value++);
+        System.out.println(value++);
         assertThat(value).isGreaterThan(1);
     }
 
