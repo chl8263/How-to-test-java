@@ -1,10 +1,14 @@
-package me.test.howtotestjava;
+package me.test.howtotestjava.domain;
+
+import me.test.howtotestjava.study.StudyStatus;
 
 public class Study {
 
     private StudyStatus status;
 
     private int limit;
+
+    private Member owner;
 
     public Study(int limit){
         this.status = StudyStatus.DRAFT;
@@ -25,5 +29,13 @@ public class Study {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public Member getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Member owner) {
+        this.owner = owner;
     }
 }
