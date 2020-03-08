@@ -100,5 +100,9 @@ public class StudyServiceTest {
         });
 
         assertEquals(Optional.empty(), memberService.findById("Ewan"));
+
+        memberService.notify(study);
+        verify(memberService, times(1)).notify(study);
+        //verify(memberService, never()).validate(any());
     }
 }

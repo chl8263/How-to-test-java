@@ -52,3 +52,9 @@ If want make stub for Exception about void method, define use doThrow.
 ~~~java
 doThrow(IllegalArgumentException.class).when(memberService).validate("Ewan");
 ~~~
+
+### verify
+Also you can verify how many time call sp specific method.
+~~~java
+verify(memberService, times(1)).notify(study);
+~~~
