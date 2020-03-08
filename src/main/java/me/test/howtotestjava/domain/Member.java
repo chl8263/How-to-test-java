@@ -2,13 +2,23 @@ package me.test.howtotestjava.domain;
 
 public class Member {
 
-    private String Id;
+    private String id;
+
+    private String email;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

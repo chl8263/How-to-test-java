@@ -20,7 +20,7 @@ public class StudyService {
         this.repository = repository;
     }
 
-    public Study createNewStudy(Long memberId, Study study){
+    public Study createNewStudy(String memberId, Study study){
         Optional<Member> member = memberService.findById(memberId);
 //        if(member.isPresent()){
 //            throw new IllegalArgumentException("Member doesn't exist for id :" + member.getId());
