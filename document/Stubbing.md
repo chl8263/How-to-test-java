@@ -17,7 +17,7 @@ If you want define behavior, first use `when` like below code. The below code sh
 ~~~java
 when(memberService.findById("Ewan")).thenReturn(Optional.of(member));
 ~~~
-
+ 
 Any happen occurred yet, you define just one of object behavior.
 
 Now show below code. Below code has `Member` Object and `memberService` call `findById` method.
